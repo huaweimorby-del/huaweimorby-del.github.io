@@ -1,0 +1,61 @@
+:root {
+  --bg: #0c0e14;
+  --surface: #12141d;
+  --surface-2: #171a25;
+  --border: #262a38;
+  --text: #eef0fb;
+  --muted: #8b91ac;
+  --accent: #7c6cf5;
+  --accent-2: #f5c542;
+  --accent-dim: rgba(124,108,245,.14);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif; line-height: 1.65;
+}
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 1.5rem; }
+a { color: var(--accent); }
+
+header.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.5rem 0; border-bottom: 1px solid var(--border);
+  max-width: 1080px; margin: 0 auto; padding-left: 1.5rem; padding-right: 1.5rem;
+}
+.brand { display: flex; align-items: center; gap: .5rem; font-weight: 700; font-size: 1.15rem; text-decoration: none; color: var(--text); }
+.brand .dot { color: var(--accent); font-size: 1.3rem; }
+
+main { padding: 3.5rem 0 5rem; }
+.kicker {
+  font-family: 'IBM Plex Mono', monospace; font-size: .78rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--accent-2); margin-bottom: .75rem;
+}
+h1 {
+  font-family: 'Fraunces', serif; font-weight: 600; font-size: 2.4rem; line-height: 1.1;
+  margin: 0 0 .5rem;
+}
+.updated { color: var(--muted); font-size: .88rem; margin-bottom: 2.5rem; }
+
+h2 {
+  font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.3rem;
+  margin: 2.5rem 0 .75rem;
+}
+p, li { color: var(--text); font-size: .98rem; }
+p { margin: 0 0 1rem; }
+ul, ol { padding-left: 1.3rem; }
+li { margin-bottom: .4rem; }
+
+.notice {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: 1rem 1.25rem; font-size: .88rem; color: var(--muted); margin-bottom: 2.5rem;
+}
+.notice strong { color: var(--text); }
+
+footer {
+  border-top: 1px solid var(--border); padding: 2.5rem 0; color: var(--muted); font-size: .85rem;
+  max-width: 1080px; margin: 0 auto; padding-left: 1.5rem; padding-right: 1.5rem;
+}
+footer .foot-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+footer nav { display: flex; gap: 1.5rem; }
+footer a { color: var(--muted); }
+footer a:hover { color: var(--text); }

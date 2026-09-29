@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Flipmetry — Marketplace Intelligence for Resellers</title>
+<meta name="description" content="Flipmetry monitors Vinted and Facebook Marketplace, tracks price history, and flags underpriced listings — with the market data to understand why." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0e14;
+    --surface: #12141d;
+    --surface-2: #171a25;
+    --border: #262a38;
+    --text: #eef0fb;
+    --muted: #8b91ac;
+    --accent: #7c6cf5;
+    --accent-2: #f5c542;
+    --green: #35d488;
+    --accent-dim: rgba(124,108,245,.14);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif; line-height: 1.6;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
+  a { color: var(--accent); text-decoration: none; }
+
+  header.nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 0; border-bottom: 1px solid var(--border);
+  }
+  .brand { display: flex; align-items: center; gap: .5rem; font-weight: 700; font-size: 1.15rem; }
+  .brand .dot { color: var(--accent); font-size: 1.3rem; }
+  nav.links { display: flex; gap: 1.75rem; font-size: .92rem; color: var(--muted); }
+  nav.links a:hover { color: var(--text); }
+  .nav-cta {
+    background: var(--accent); color: #fff; padding: .55rem 1.2rem;
+    border-radius: 8px; font-weight: 600; font-size: .88rem;
+  }
+
+  .hero { padding: 5rem 0 4rem; text-align: center; }
+  .kicker {
+    font-family: 'IBM Plex Mono', monospace; font-size: .78rem; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--accent-2); margin-bottom: 1.25rem;
+  }
+  h1 {
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 3rem; line-height: 1.08;
+    margin: 0 0 1.25rem; text-wrap: balance;
+  }
+  h1 em { color: var(--accent); font-style: normal; }
+  .lead {
+    font-size: 1.2rem; color: var(--muted); max-width: 620px; margin: 0 auto 2.25rem;
+    text-wrap: balance;
+  }
+  .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: .85rem 1.75rem; border-radius: 10px;
+    font-weight: 600; font-size: 1rem;
+  }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-secondary { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); }
+
+  .disclaimer {
+    max-width: 680px; margin: 2.5rem auto 0; padding: 1rem 1.25rem;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    font-size: .88rem; color: var(--muted); text-align: left;
+  }
+  .disclaimer strong { color: var(--text); }
+
+  section { padding: 4rem 0; border-top: 1px solid var(--border); }
+  .section-head { text-align: center; max-width: 620px; margin: 0 auto 3rem; }
+  .section-head .kicker { text-align: center; }
+  .section-head h2 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 2rem; margin: 0 0 .75rem; }
+  .section-head p { color: var(--muted); margin: 0; }
+
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  @media (max-width: 800px) { .grid3 { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 1.75rem;
+  }
+  .card .icon {
+    width: 40px; height: 40px; border-radius: 10px; background: var(--accent-dim);
+    color: var(--accent); display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; margin-bottom: 1.1rem;
+  }
+  .card h3 { font-size: 1.05rem; margin: 0 0 .5rem; }
+  .card p { color: var(--muted); font-size: .92rem; margin: 0; }
+
+  .platform-row { display: flex; gap: .75rem; flex-wrap: wrap; justify-content: center; margin-top: 2rem; }
+  .pill {
+    display: flex; align-items: center; gap: .5rem; border: 1px solid var(--border);
+    background: var(--surface); border-radius: 999px; padding: .5rem 1rem; font-size: .88rem;
+  }
+  .pill .status { width: 8px; height: 8px; border-radius: 50%; }
+  .status.on { background: var(--green); }
+  .status.partial { background: var(--accent-2); }
+  .status.off { background: #ef5b5b; }
+
+  table.pricing {
+    width: 100%; border-collapse: collapse; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
+    font-size: .92rem;
+  }
+  table.pricing th, table.pricing td { padding: 1rem 1.25rem; text-align: left; border-bottom: 1px solid var(--border); }
+  table.pricing th { font-family: 'IBM Plex Mono', monospace; font-size: .72rem; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); background: var(--surface-2); }
+  table.pricing tr:last-child td { border-bottom: none; }
+  table.pricing td.price { font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .badge-founder { display: inline-block; margin-left: .5rem; font-size: .7rem; padding: .1rem .5rem; border-radius: 999px; background: var(--accent-dim); color: var(--accent); }
+  .wrap-table { overflow-x: auto; }
+  .buy-btn {
+    background: var(--accent); color: #fff; border: none; padding: .5rem 1.1rem;
+    border-radius: 8px; font-weight: 600; font-size: .85rem; cursor: pointer; font-family: inherit;
+  }
+  .buy-btn:hover { opacity: .9; }
+  .buy-btn:disabled { opacity: .5; cursor: default; }
+  .buy-btn.secondary { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); }
+
+  footer {
+    border-top: 1px solid var(--border); padding: 2.5rem 0; color: var(--muted); font-size: .85rem;
+  }
+  footer .foot-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  footer nav { display: flex; gap: 1.5rem; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="nav">
+    <div class="brand"><span class="dot">◎</span> Flipmetry</div>
+    <nav class="links">
+      <a href="#features">Features</a>
+      <a href="#platforms">Platforms</a>
+      <a href="#pricing">Pricing</a>
+    </nav>
+    <a class="nav-cta" href="#pricing">Get Started</a>
+  </header>
+</div>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="kicker">Marketplace Intelligence for Resellers</div>
+    <h1>Find <em>potentially underpriced</em><br>listings faster.</h1>
+    <p class="lead">Flipmetry watches Vinted and Facebook Marketplace for you, learns what things actually sell for, and flags what's genuinely worth a second look — with the comparable data to back it up.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#pricing">See pricing</a>
+      <a class="btn btn-secondary" href="#features">How it works</a>
+    </div>
+    <div class="disclaimer">
+      <strong>Flipmetry finds potentially underpriced listings faster. It does not guarantee profit, a sale, or a specific sell-through rate.</strong> You're still the one who checks condition, photos, listing accuracy, and seller legitimacy — Flipmetry's job is to shorten how long that takes to get right.
+    </div>
+  </div>
+</div>
+
+<section id="features">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">How It Works</div>
+      <h2>Not a scraper. A pricing memory.</h2>
+      <p>Most tools show you a listing. Flipmetry remembers every listing it's ever seen, and compares a new one against real, genuinely comparable history — not a guess.</p>
+    </div>
+    <div class="grid3">
+      <div class="card">
+        <div class="icon">◎</div>
+        <h3>Historical listing tracking</h3>
+        <p>Every listing gets a stable identity and a full, immutable history — price changes and availability over time, not a one-off snapshot.</p>
+      </div>
+      <div class="card">
+        <div class="icon">◇</div>
+        <h3>Real product matching</h3>
+        <p>Listings are matched to the specific comparable product they actually are — "iPhone 14 Pro," not just "phone" — independent of whichever search found them.</p>
+      </div>
+      <div class="card">
+        <div class="icon">▤</div>
+        <h3>Observed market pricing</h3>
+        <p>A live, identity-aware price baseline per product — median, percentiles, sample size — shown only once there's real comparable data. "Insufficient data" is reported honestly, never guessed.</p>
+      </div>
+      <div class="card">
+        <div class="icon">↻</div>
+        <h3>Flipmetry Calibration</h3>
+        <p>A dedicated warm-up mode that deliberately sweeps a marketplace's category tree before normal scanning starts surfacing opportunities — so pricing has something real to compare against from day one.</p>
+      </div>
+      <div class="card">
+        <div class="icon">✓</div>
+        <h3>Buy/sell pipeline</h3>
+        <p>Found → Saved → Bought → Listed → Sold, with real invested/sold amounts, so realised profit comes from what you actually paid and received — never an estimate.</p>
+      </div>
+      <div class="card">
+        <div class="icon">⌂</div>
+        <h3>Runs on your machine</h3>
+        <p>No cloud backend, no accounts beyond your licence. Flipmetry runs against your own logged-in marketplace sessions — your data and credentials never leave your device.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="platforms">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Coverage</div>
+      <h2>Marketplace support, honestly stated</h2>
+      <p>We'd rather tell you what doesn't work yet than hide it.</p>
+    </div>
+    <div class="platform-row">
+      <div class="pill"><span class="status on"></span>Vinted — full support</div>
+      <div class="pill"><span class="status on"></span>Facebook Marketplace</div>
+      <div class="pill"><span class="status on"></span>Facebook Groups</div>
+      <div class="pill"><span class="status partial"></span>eBay — in progress</div>
+      <div class="pill"><span class="status off"></span>Gumtree — currently blocked by their bot-mitigation</div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Pricing</div>
+      <h2>One app. Every plan gets everything.</h2>
+      <p>Founder pricing is locked in for as long as you stay subscribed — it only ever gets more expensive for people who join later, never for you.</p>
+    </div>
+    <div class="wrap-table">
+      <table class="pricing">
+        <thead>
+          <tr><th>Plan</th><th>Price</th><th>Devices</th><th>Notes</th><th></th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Beta</td>
+            <td class="price">Free</td>
+            <td>2</td>
+            <td>48-hour trial license. No card required.</td>
+            <td><button class="buy-btn secondary" disabled>Download app</button></td>
+          </tr>
+          <tr>
+            <td>Super Founder <span class="badge-founder">First 20</span></td>
+            <td class="price">£9.99/mo</td>
+            <td>2</td>
+            <td>Locked in for as long as you subscribe.</td>
+            <td><button class="buy-btn" data-price-id="pri_01m2zggezk1rce8dvfv43jadwe">Subscribe</button></td>
+          </tr>
+          <tr>
+            <td>Founder <span class="badge-founder">Next 50</span></td>
+            <td class="price">£19.99/mo</td>
+            <td>2</td>
+            <td>Locked in for as long as you subscribe.</td>
+            <td><button class="buy-btn" data-price-id="pri_01m2zgfw9cqszc2jp88dn5vvc9">Subscribe</button></td>
+          </tr>
+          <tr>
+            <td>Standard</td>
+            <td class="price">£24.99/mo</td>
+            <td>2</td>
+            <td>Open-ended, ongoing pricing.</td>
+            <td><button class="buy-btn" data-price-id="pri_01m2zgf534r27hbwnqj22tezan">Subscribe</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <div class="foot-row">
+      <div>© Flipmetry. Windows desktop application.</div>
+      <nav>
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="refunds.html">Refunds</a>
+        <a href="mailto:support@flipmetry.app">Support</a>
+      </nav>
+    </div>
+  </footer>
+</div>
+
+<div id="license-reveal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:999; align-items:center; justify-content:center; padding:1.5rem;">
+  <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:2rem; max-width:440px; text-align:center;">
+    <h3 style="margin:0 0 .75rem;">Thanks for subscribing!</h3>
+    <p id="license-reveal-body" style="color:var(--muted); font-size:.92rem;">Preparing your licence key…</p>
+    <button class="buy-btn" style="margin-top:1rem;" onclick="document.getElementById('license-reveal').style.display='none'">Close</button>
+  </div>
+</div>
+
+<script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+<script>
+  var LICENSING_API_URL = "https://flipmetry-licensing.flipmetry.workers.dev";
+
+  Paddle.Environment.set("sandbox");
+  Paddle.Initialize({
+    token: "test_19e1b50baba6709b585c52260fe",
+    eventCallback: function (event) {
+      if (event.name === "checkout.completed") {
+        var transactionId = event.data && (event.data.transaction_id || event.data.transactionId || (event.data.transaction && event.data.transaction.id));
+        showLicenseReveal(transactionId);
+      }
+    }
+  });
+
+  document.querySelectorAll(".buy-btn[data-price-id]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      Paddle.Checkout.open({
+        items: [{ priceId: btn.getAttribute("data-price-id"), quantity: 1 }]
+      });
+    });
+  });
+
+  function showLicenseReveal(transactionId) {
+    var modal = document.getElementById("license-reveal");
+    var body = document.getElementById("license-reveal-body");
+    modal.style.display = "flex";
+    if (!transactionId) {
+      body.textContent = "We'll email your licence activation details shortly.";
+      return;
+    }
+    pollForLicense(transactionId, body, 0);
+  }
+
+  function pollForLicense(transactionId, body, attempt) {
+    if (attempt >= 20) {
+      body.textContent = "Still processing — check your email in a moment, or contact support@flipmetry.app with your order confirmation.";
+      return;
+    }
+    fetch(LICENSING_API_URL + "/lookup?transaction_id=" + encodeURIComponent(transactionId))
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        if (data.ok && data.licenseKey) {
+          body.innerHTML = "Your licence key:<br><strong style=\"font-family:'IBM Plex Mono',monospace; font-size:1.1rem; color:var(--text);\">" + data.licenseKey + "</strong><br><br>Paste this into Flipmetry's activation screen to unlock your plan.";
+        } else {
+          setTimeout(function () { pollForLicense(transactionId, body, attempt + 1); }, 2000);
+        }
+      })
+      .catch(function () {
+        setTimeout(function () { pollForLicense(transactionId, body, attempt + 1); }, 2000);
+      });
+  }
+</script>
+</body>
+</html>
