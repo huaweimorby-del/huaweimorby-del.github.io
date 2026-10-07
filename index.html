@@ -146,13 +146,13 @@
   <div class="wrap">
     <div class="kicker">Marketplace Intelligence for Resellers</div>
     <h1>Find <em>potentially underpriced</em><br>listings faster.</h1>
-    <p class="lead">Flipmetry watches Vinted and Facebook Marketplace for you, learns what things actually sell for, and flags what's genuinely worth a second look — with the comparable data to back it up.</p>
+    <p class="lead">Flipmetry watches Vinted, Facebook Marketplace, Facebook Groups and Gumtree for you while it's running, compares each new listing with the asking prices it has observed, and flags the ones that look underpriced, with the comparable data to back it up.</p>
     <div class="hero-ctas">
       <a class="btn btn-primary" href="#pricing">See pricing</a>
       <a class="btn btn-secondary" href="#features">How it works</a>
     </div>
     <div class="disclaimer">
-      <strong>Flipmetry finds potentially underpriced listings faster. It does not guarantee profit, a sale, or a specific sell-through rate.</strong> You're still the one who checks condition, photos, listing accuracy, and seller legitimacy — Flipmetry's job is to shorten how long that takes to get right.
+      <strong>Flipmetry finds potentially underpriced listings faster. It compares asking prices, not confirmed sale prices, and does not guarantee profit, a sale, or a specific sell-through rate.</strong> You're still the one who checks condition, photos, listing accuracy, and seller legitimacy — Flipmetry's job is to shorten how long that takes to get right.
     </div>
   </div>
 </div>
@@ -177,23 +177,23 @@
       </div>
       <div class="card">
         <div class="icon">▤</div>
-        <h3>Observed market pricing</h3>
-        <p>A live, identity-aware price baseline per product — median, percentiles, sample size — shown only once there's real comparable data. "Insufficient data" is reported honestly, never guessed.</p>
+        <h3>Observed asking-price market</h3>
+        <p>A price baseline per product built from the asking prices Flipmetry has seen: median, percentiles and sample size, shown only once there's enough comparable data. These are asking prices, not what items finally sell for. "Insufficient data" is reported honestly, never guessed.</p>
       </div>
       <div class="card">
         <div class="icon">↻</div>
         <h3>Flipmetry Calibration</h3>
-        <p>A dedicated warm-up mode that deliberately sweeps a marketplace's category tree before normal scanning starts surfacing opportunities — so pricing has something real to compare against from day one.</p>
+        <p>A dedicated warm-up mode that deliberately sweeps a marketplace's category tree before normal scanning starts surfacing opportunities — so there is more observed pricing to compare against sooner.</p>
       </div>
       <div class="card">
         <div class="icon">✓</div>
         <h3>Buy/sell pipeline</h3>
-        <p>Found → Saved → Bought → Listed → Sold, with real invested/sold amounts, so realised profit comes from what you actually paid and received — never an estimate.</p>
+        <p>Found → Saved → Bought → Listed → Sold, with the amounts you enter, so realised profit comes from what you actually paid and received, not an estimate.</p>
       </div>
       <div class="card">
         <div class="icon">⌂</div>
         <h3>Runs on your machine</h3>
-        <p>No cloud backend, no accounts beyond your licence. Flipmetry runs against your own logged-in marketplace sessions — your data and credentials never leave your device.</p>
+        <p>No cloud backend, no accounts beyond your licence. Flipmetry runs against your own logged-in marketplace sessions on your own PC, so it scans while Flipmetry is open and your computer is on. Your data and logins never leave your device.</p>
       </div>
     </div>
   </div>
@@ -204,14 +204,14 @@
     <div class="section-head">
       <div class="kicker">Coverage</div>
       <h2>Marketplace support, honestly stated</h2>
-      <p>We'd rather tell you what doesn't work yet than hide it.</p>
+      <p>We'd rather tell you what doesn't work yet than hide it. These integrations are in Beta, depend on third-party websites, and can break or change without notice. We fix them quickly but can't promise permanent availability.</p>
     </div>
     <div class="platform-row">
-      <div class="pill"><span class="status on"></span>Vinted — full support</div>
-      <div class="pill"><span class="status on"></span>Facebook Marketplace</div>
-      <div class="pill"><span class="status on"></span>Facebook Groups</div>
-      <div class="pill"><span class="status partial"></span>eBay — in progress</div>
-      <div class="pill"><span class="status off"></span>Gumtree — currently blocked by their bot-mitigation</div>
+      <div class="pill"><span class="status on"></span>Vinted — Beta support</div>
+      <div class="pill"><span class="status on"></span>Facebook Marketplace — Beta support</div>
+      <div class="pill"><span class="status on"></span>Facebook Groups — Beta support</div>
+      <div class="pill"><span class="status partial"></span>eBay — in development, not yet supported</div>
+      <div class="pill"><span class="status on"></span>Gumtree — Beta support</div>
     </div>
   </div>
 </section>
@@ -233,8 +233,8 @@
             <td>Beta</td>
             <td class="price">Free</td>
             <td>2</td>
-            <td>48-hour trial license. No card required.</td>
-            <td><button class="buy-btn secondary" disabled>Download app</button></td>
+            <td>Free trial licence. No card required.</td>
+            <td><button class="buy-btn secondary" id="trial-btn">Start free trial</button></td>
           </tr>
           <tr>
             <td>Super Founder <span class="badge-founder">First 20</span></td>
@@ -271,7 +271,7 @@
         <a href="terms.html">Terms</a>
         <a href="privacy.html">Privacy</a>
         <a href="refunds.html">Refunds</a>
-        <a href="mailto:support@flipmetry.app">Support</a>
+        <a href="mailto:ryanmorby92@gmail.com">Support</a>
       </nav>
     </div>
   </footer>
@@ -281,8 +281,27 @@
   <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:2rem; max-width:440px; text-align:center;">
     <h3 style="margin:0 0 .75rem;">Thanks for subscribing!</h3>
     <p id="license-reveal-body" style="color:var(--muted); font-size:.92rem;">Preparing your licence key…</p>
+    <p style="color:var(--muted); font-size:.82rem;"><strong>Copy your key now.</strong> We don't email it. If you lose it, contact ryanmorby92@gmail.com from the email you paid with.</p>
+    <a class="buy-btn" id="download-link" href="https://pub-c61f546a47834a09b3cf00737bf65064.r2.dev/Flipmetry-Setup-2.2.0-beta.2.exe" style="display:inline-block; text-decoration:none; margin-top:.5rem;">Download Flipmetry for Windows</a>
     <button class="buy-btn" style="margin-top:1rem;" onclick="document.getElementById('license-reveal').style.display='none'">Close</button>
   </div>
+</div>
+
+<div id="trial-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:999; align-items:center; justify-content:center; padding:1.5rem;">
+<div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:2rem; max-width:440px; width:100%; text-align:center;">
+<h3 style="margin:0 0 .75rem;">Start your free trial</h3>
+<div id="trial-form">
+<p style="color:var(--muted); font-size:.92rem;">Enter your email and we'll show your trial licence key straight away. No card needed. One trial per email address.</p>
+<input id="trial-email" type="email" autocomplete="email" placeholder="you@example.com" style="width:100%; padding:.7rem .8rem; border-radius:8px; border:1px solid var(--border); background:var(--surface-2); color:var(--text); font:inherit;">
+<button class="buy-btn" id="trial-submit" style="margin-top:1rem;">Get my trial key</button>
+</div>
+<p id="trial-msg" style="color:var(--muted); font-size:.92rem; margin-top:.9rem;"></p>
+<div id="trial-done" style="display:none;">
+<a class="buy-btn" href="https://pub-c61f546a47834a09b3cf00737bf65064.r2.dev/Flipmetry-Setup-2.2.0-beta.2.exe" style="display:inline-block; text-decoration:none;">Download Flipmetry for Windows</a>
+<p style="color:var(--muted); font-size:.82rem; margin-top:.9rem;">Install it, open it, and paste the key when asked. Windows may show a SmartScreen warning because this Beta installer is not yet code-signed: choose More info, then Run anyway.</p>
+</div>
+<button class="buy-btn secondary" style="margin-top:1rem;" onclick="document.getElementById('trial-modal').style.display='none'">Close</button>
+</div>
 </div>
 
 <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
@@ -290,7 +309,7 @@
   var LICENSING_API_URL = "https://flipmetry-licensing.flipmetry.workers.dev";
 
   Paddle.Environment.set("sandbox");
-  Paddle.Initialize({
+Paddle.Initialize({
     token: "test_19e1b50baba6709b585c52260fe",
     eventCallback: function (event) {
       if (event.name === "checkout.completed") {
@@ -308,12 +327,43 @@
     });
   });
 
+  var trialModal = document.getElementById("trial-modal");
+  document.getElementById("trial-btn").addEventListener("click", function () { trialModal.style.display = "flex"; document.getElementById("trial-email").focus(); });
+  document.getElementById("trial-submit").addEventListener("click", function () {
+    var email = document.getElementById("trial-email").value.trim();
+    var msg = document.getElementById("trial-msg");
+    var btn = document.getElementById("trial-submit");
+    msg.textContent = "";
+    if (!email) { msg.textContent = "Enter your email address."; return; }
+    btn.disabled = true;
+    fetch(LICENSING_API_URL + "/trial", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: email }) })
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        btn.disabled = false;
+        if (data.ok && data.licenseKey) {
+          document.getElementById("trial-form").style.display = "none";
+          var ends = data.expiresAt ? new Date(data.expiresAt).toLocaleString() : "";
+          msg.innerHTML = "Your trial licence key:<br><strong style=\"font-family:'IBM Plex Mono',monospace; font-size:1.1rem; color:var(--text);\">" + data.licenseKey + "</strong><br><br>Valid for " + data.days + " day" + (data.days === 1 ? "" : "s") + (ends ? " (until " + ends + ")" : "") + ". Copy it now; we don't email it.";
+          document.getElementById("trial-done").style.display = "block";
+        } else if (data.reason === "already_used") {
+          msg.textContent = "That email address has already used its free trial. You can subscribe below to keep using Flipmetry.";
+        } else if (data.reason === "invalid_email") {
+          msg.textContent = "That doesn't look like a valid email address.";
+        } else if (data.reason === "rate_limited") {
+          msg.textContent = "Too many trials requested from this network today. Please try again tomorrow.";
+        } else {
+          msg.textContent = "Something went wrong. Please try again, or contact ryanmorby92@gmail.com.";
+        }
+      })
+      .catch(function () { btn.disabled = false; msg.textContent = "Couldn't reach the licence service. Check your connection and try again."; });
+  });
+
   function showLicenseReveal(transactionId) {
     var modal = document.getElementById("license-reveal");
     var body = document.getElementById("license-reveal-body");
     modal.style.display = "flex";
     if (!transactionId) {
-      body.textContent = "We'll email your licence activation details shortly.";
+      body.textContent = "Payment received. Your licence key couldn't be shown automatically. Please contact ryanmorby92@gmail.com with your order confirmation and we'll send it.";
       return;
     }
     pollForLicense(transactionId, body, 0);
@@ -321,7 +371,7 @@
 
   function pollForLicense(transactionId, body, attempt) {
     if (attempt >= 20) {
-      body.textContent = "Still processing — check your email in a moment, or contact support@flipmetry.app with your order confirmation.";
+      body.textContent = "Still processing. Please wait a minute and refresh, or contact ryanmorby92@gmail.com with your order confirmation and we'll send your key.";
       return;
     }
     fetch(LICENSING_API_URL + "/lookup?transaction_id=" + encodeURIComponent(transactionId))
