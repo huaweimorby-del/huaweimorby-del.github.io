@@ -259,6 +259,7 @@
           </tr>
         </tbody>
       </table>
+<p style="margin-top:1rem; color:var(--muted); font-size:.9rem;">Already subscribed? <a href="#" id="find-key-link" style="color:var(--accent);">Find your licence key</a>. You'll need the transaction ID (starts <code>txn_</code>) from your Paddle receipt email.</p>
     </div>
   </div>
 </section>
@@ -268,7 +269,8 @@
     <div class="foot-row">
       <div>© Flipmetry. Windows desktop application.</div>
       <nav>
-        <a href="terms.html">Terms</a>
+        <a href="#" id="find-key-link-2">Find my licence key</a>
+<a href="terms.html">Terms</a>
         <a href="privacy.html">Privacy</a>
         <a href="refunds.html">Refunds</a>
         <a href="mailto:ryanmorby92@gmail.com">Support</a>
@@ -281,10 +283,22 @@
   <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:2rem; max-width:440px; text-align:center;">
     <h3 style="margin:0 0 .75rem;">Thanks for subscribing!</h3>
     <p id="license-reveal-body" style="color:var(--muted); font-size:.92rem;">Preparing your licence key…</p>
-    <p style="color:var(--muted); font-size:.82rem;"><strong>Copy your key now.</strong> We don't email it. If you lose it, contact ryanmorby92@gmail.com from the email you paid with.</p>
+    <p style="color:var(--muted); font-size:.82rem;"><strong>Copy your key now.</strong> We don't email it, but you can always find it again with the transaction ID from your Paddle receipt (use "Find my licence key" at the bottom of this page). If you lose it, contact ryanmorby92@gmail.com from the email you paid with.</p>
     <a class="buy-btn" id="download-link" href="https://pub-c61f546a47834a09b3cf00737bf65064.r2.dev/Flipmetry-Setup-2.2.0-beta.2.exe" style="display:inline-block; text-decoration:none; margin-top:.5rem;">Download Flipmetry for Windows</a>
     <button class="buy-btn" style="margin-top:1rem;" onclick="document.getElementById('license-reveal').style.display='none'">Close</button>
   </div>
+</div>
+
+<div id="findkey-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:999; align-items:center; justify-content:center; padding:1.5rem;">
+<div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:2rem; max-width:460px; width:100%; text-align:center;">
+<h3 style="margin:0 0 .75rem;">Find your licence key</h3>
+<p style="color:var(--muted); font-size:.92rem;">Open the <strong>"Payment confirmed"</strong> email from Paddle. Copy the <strong>Transaction ID</strong> (starts <code>txn_</code>) and paste it here.</p>
+<input id="findkey-txn" type="text" autocomplete="off" placeholder="txn_01abc..." style="width:100%; padding:.7rem .8rem; border-radius:8px; border:1px solid var(--border); background:var(--surface-2); color:var(--text); font:inherit;">
+<button class="buy-btn" id="findkey-submit" style="margin-top:1rem;">Show my key</button>
+<p id="findkey-msg" style="color:var(--muted); font-size:.92rem; margin-top:.9rem;"></p>
+<a class="buy-btn" id="findkey-download" href="https://pub-c61f546a47834a09b3cf00737bf65064.r2.dev/Flipmetry-Setup-2.2.0-beta.2.exe" style="display:none; text-decoration:none; margin-top:.5rem;">Download Flipmetry for Windows</a>
+<div><button class="buy-btn secondary" style="margin-top:1rem;" onclick="document.getElementById('findkey-modal').style.display='none'">Close</button></div>
+</div>
 </div>
 
 <div id="trial-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:999; align-items:center; justify-content:center; padding:1.5rem;">
@@ -351,6 +365,30 @@ Paddle.Initialize({
           msg.textContent = "Too many trials requested from this network today. Please try again tomorrow.";
         } else {
           msg.textContent = "Something went wrong. Please try again, or contact ryanmorby92@gmail.com.";
+        }
+      })
+      .catch(function () { btn.disabled = false; msg.textContent = "Couldn't reach the licence service. Check your connection and try again."; });
+  });
+
+  function openFindKey(e) { e.preventDefault(); document.getElementById("findkey-modal").style.display = "flex"; document.getElementById("findkey-txn").focus(); }
+  document.getElementById("find-key-link").addEventListener("click", openFindKey);
+  document.getElementById("find-key-link-2").addEventListener("click", openFindKey);
+  document.getElementById("findkey-submit").addEventListener("click", function () {
+    var txn = document.getElementById("findkey-txn").value.trim();
+    var msg = document.getElementById("findkey-msg");
+    var btn = document.getElementById("findkey-submit");
+    msg.textContent = "";
+    if (!/^txn_[a-z0-9]{20,}$/i.test(txn)) { msg.textContent = "That doesn't look like a transaction ID. It starts with txn_ and is in your Paddle receipt email."; return; }
+    btn.disabled = true;
+    fetch(LICENSING_API_URL + "/lookup?transaction_id=" + encodeURIComponent(txn))
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        btn.disabled = false;
+        if (data.ok && data.licenseKey) {
+          msg.innerHTML = "Your licence key:<br><strong style=\"font-family:'IBM Plex Mono',monospace; font-size:1.1rem; color:var(--text);\">" + data.licenseKey + "</strong><br><br>Install Flipmetry, open it, and paste this key when asked.";
+          document.getElementById("findkey-download").style.display = "inline-block";
+        } else {
+          msg.textContent = "We couldn't find that payment. Check the ID is complete (nothing cut off), or wait a minute if you've only just paid. Still stuck? Contact " + "ryanmorby92@gmail.com" + " with your receipt.";
         }
       })
       .catch(function () { btn.disabled = false; msg.textContent = "Couldn't reach the licence service. Check your connection and try again."; });
