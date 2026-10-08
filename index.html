@@ -241,21 +241,21 @@
             <td class="price">£9.99/mo</td>
             <td>2</td>
             <td>Locked in for as long as you subscribe.</td>
-            <td><button class="buy-btn" data-price-id="pri_01m2zggezk1rce8dvfv43jadwe">Subscribe</button></td>
+            <td><button class="buy-btn" data-price-id="pri_01m3pmaqqp5f0mj2947rxrtay1">Subscribe</button></td>
           </tr>
           <tr>
             <td>Founder <span class="badge-founder">Next 50</span></td>
             <td class="price">£19.99/mo</td>
             <td>2</td>
             <td>Locked in for as long as you subscribe.</td>
-            <td><button class="buy-btn" data-price-id="pri_01m2zgfw9cqszc2jp88dn5vvc9">Subscribe</button></td>
+            <td><button class="buy-btn" data-price-id="pri_01m3pm8rrc7znva27m3f8x7bkq">Subscribe</button></td>
           </tr>
           <tr>
             <td>Standard</td>
             <td class="price">£24.99/mo</td>
             <td>2</td>
             <td>Open-ended, ongoing pricing.</td>
-            <td><button class="buy-btn" data-price-id="pri_01m2zgf534r27hbwnqj22tezan">Subscribe</button></td>
+            <td><button class="buy-btn" data-price-id="pri_01m3pm6xe9hnkab0p1rqrsyqms">Subscribe</button></td>
           </tr>
         </tbody>
       </table>
@@ -307,10 +307,8 @@
 <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
 <script>
   var LICENSING_API_URL = "https://flipmetry-licensing.flipmetry.workers.dev";
-
-  Paddle.Environment.set("sandbox");
 Paddle.Initialize({
-    token: "test_19e1b50baba6709b585c52260fe",
+    token: "live_796cfb771e0154482bc70a39feb",
     eventCallback: function (event) {
       if (event.name === "checkout.completed") {
         var transactionId = event.data && (event.data.transaction_id || event.data.transactionId || (event.data.transaction && event.data.transaction.id));
