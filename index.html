@@ -326,7 +326,10 @@ Paddle.Initialize({
     eventCallback: function (event) {
       if (event.name === "checkout.completed") {
         var transactionId = event.data && (event.data.transaction_id || event.data.transactionId || (event.data.transaction && event.data.transaction.id));
-        showLicenseReveal(transactionId);
+        // Paddle's own checkout window sits on top of everything, which hid the key pop-up
+        // underneath it. Close the checkout first so the customer can see their key.
+        try { Paddle.Checkout.close(); } catch (e) { /* already closed */ }
+        setTimeout(function () { showLicenseReveal(transactionId); }, 400);
       }
     }
   });
